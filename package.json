@@ -26,6 +26,8 @@
     "next": "^15",
     "motion": "^12",
     "gsap": "^3",
+    "@gsap/react": "^2",
+    "ogl": "^1",
     "tailwindcss": "^4"
   },
   "devDependencies": {
@@ -36,6 +38,8 @@
     "react-dom": "^19",
     "motion": "^12",
     "gsap": "^3",
+    "@gsap/react": "^2",
+    "ogl": "^1",
     "tailwindcss": "^4",
     "tsup": "^8",
     "typescript": "^5"
