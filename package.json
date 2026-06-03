@@ -4,15 +4,27 @@
   "description": "PT Blink shared UI primitives, design tokens, and animation helpers.",
   "license": "UNLICENSED",
   "type": "module",
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
-    "./tailwind": { "types": "./dist/tailwind.d.ts", "import": "./dist/tailwind.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tailwind": {
+      "types": "./dist/tailwind.d.ts",
+      "import": "./dist/tailwind.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./styles/tokens.css": "./dist/styles/tokens.css",
     "./styles/utilities.css": "./dist/styles/utilities.css"
   },
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -21,29 +33,31 @@
     "release": "npm run build && npm publish --access public"
   },
   "peerDependencies": {
+    "@gsap/react": "^2",
+    "gsap": "^3",
+    "motion": "^12",
+    "next": "^15",
+    "ogl": "^1",
     "react": "^19",
     "react-dom": "^19",
-    "next": "^15",
-    "motion": "^12",
-    "gsap": "^3",
-    "@gsap/react": "^2",
-    "ogl": "^1",
     "tailwindcss": "^4"
   },
   "devDependencies": {
+    "@gsap/react": "^2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "gsap": "^3",
+    "motion": "^12",
     "next": "^15",
+    "ogl": "^1",
     "react": "^19",
     "react-dom": "^19",
-    "motion": "^12",
-    "gsap": "^3",
-    "@gsap/react": "^2",
-    "ogl": "^1",
     "tailwindcss": "^4",
     "tsup": "^8",
     "typescript": "^5"
   },
   "repository": "github:MaxouJS/ptblink-ui",
-  "publishConfig": { "access": "public" }
+  "publishConfig": {
+    "access": "public"
+  }
 }
