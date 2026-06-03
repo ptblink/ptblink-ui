@@ -1,0 +1,19 @@
+@theme {
+  --breakpoint-kiosk: 1920px;
+
+  --color-bg: #050608;
+  --color-bg-elev: #0d0f12;
+  --color-bg-elev-2: #15181c;
+  --color-ink: #f5f6f8;
+  --color-ink-dim: #9ba0a8;
+  --color-ink-mute: #5d626b;
+  --color-line: rgba(255, 255, 255, 0.06);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
+  --color-brand: #2c90cf;
+  --color-brand-soft: #5fb1e6;
+  --color-brand-dim: #1a5a82;
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}

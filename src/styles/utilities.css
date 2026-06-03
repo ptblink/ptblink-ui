@@ -1,0 +1,48 @@
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+}
+
+.font-thin-tight {
+  font-weight: 100;
+  letter-spacing: -0.04em;
+}
+
+.hairline {
+  border-color: var(--color-line);
+}
+
+.glow-ring {
+  box-shadow:
+    inset 0 0 0 1px var(--color-line),
+    0 30px 60px -30px rgba(44, 144, 207, 0.25);
+}
+
+/* --- Viewport-scaled typography for slide deck content --- */
+/* Every size uses clamp(min, vw|vmin, max) so a slide that fits at 1440×900
+   also fits at 768×1024 or 1024×768 — no overflow at any aspect ratio. */
+.text-display-2xl { font-size: clamp(2.25rem, 8vw, 10rem); line-height: 0.95; letter-spacing: -0.04em; overflow-wrap: break-word; }
+.text-display-xl  { font-size: clamp(2rem, 6.5vw, 8rem); line-height: 1.0; letter-spacing: -0.035em; overflow-wrap: break-word; }
+.text-display-lg  { font-size: clamp(1.75rem, 5vw, 6rem); line-height: 1.02; letter-spacing: -0.03em; overflow-wrap: break-word; }
+.text-display-md  { font-size: clamp(1.375rem, 3.6vw, 4rem); line-height: 1.05; letter-spacing: -0.025em; overflow-wrap: break-word; }
+.text-display-sm  { font-size: clamp(1.125rem, 2.4vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; overflow-wrap: break-word; }
+
+.text-body-xl { font-size: clamp(1.125rem, 1.8vw, 1.75rem); line-height: 1.5; }
+.text-body-lg { font-size: clamp(1rem, 1.4vw, 1.375rem); line-height: 1.5; }
+.text-body    { font-size: clamp(0.9375rem, 1.1vw, 1.125rem); line-height: 1.55; }
+.text-body-sm { font-size: clamp(0.8125rem, 0.95vw, 1rem); line-height: 1.55; }
+.text-eyebrow { font-size: clamp(0.625rem, 0.75vw, 0.875rem); line-height: 1.4; letter-spacing: 0.4em; }
+
+/* Viewport-scaled spacing */
+.pad-slide-y { padding-top: clamp(2rem, 7vh, 5rem); padding-bottom: clamp(2rem, 7vh, 5rem); }
+.pad-slide-x { padding-left: clamp(7rem, 10vw, 9rem); padding-right: clamp(7rem, 10vw, 9rem); }
+.gap-stack-sm { gap: clamp(0.5rem, 1.5vh, 1rem); }
+.gap-stack    { gap: clamp(1rem, 2.5vh, 1.75rem); }
+.gap-stack-lg { gap: clamp(1.5rem, 4vh, 3rem); }
+.mt-stack-sm  { margin-top: clamp(0.75rem, 2vh, 1.25rem); }
+.mt-stack     { margin-top: clamp(1.25rem, 3.5vh, 2.5rem); }
+.mt-stack-lg  { margin-top: clamp(2rem, 6vh, 4rem); }
+.mb-stack-sm  { margin-bottom: clamp(0.75rem, 2vh, 1.25rem); }
+.mb-stack     { margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem); }
+.mb-stack-lg  { margin-bottom: clamp(2rem, 6vh, 4rem); }
