@@ -30,11 +30,21 @@ export default defineConfig({
   ],
   esbuildOptions(options) {
     options.banner = {};
+    // Use the automatic JSX runtime (React 17+) so components don't need
+    // `import React` and the bundle doesn't emit bare `React.createElement`.
+    options.jsx = "automatic";
   },
   async onSuccess() {
     const { cp, readFile, writeFile } = await import("node:fs/promises");
     await cp("src/styles", "dist/styles", { recursive: true });
-    await cp("src/styles/styles.css", "dist/styles.css");
+    // dist/styles.css is the public entrypoint (exports["./styles.css"]).
+    // Its @imports must be relative to dist/, not dist/styles/, so we
+    // rewrite the sibling-relative refs to point into the styles/ subdir.
+    const srcStylesCss = await readFile("src/styles/styles.css", "utf8");
+    const distStylesCss = srcStylesCss
+      .replace(/^@import "\.\/tokens\.css";$/m, '@import "./styles/tokens.css";')
+      .replace(/^@import "\.\/utilities\.css";$/m, '@import "./styles/utilities.css";');
+    await writeFile("dist/styles.css", distStylesCss);
     // Prepend "use client" to dist/index.js so the barrel works in Next.js
     // App Router server contexts. rollup strips the per-source directives
     // during bundling; we re-add at the top of the single bundled output.
