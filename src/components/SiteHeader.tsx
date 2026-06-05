@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useScrolled } from "../hooks/useScrolled";
+import iconUrl from "../brand/icon-128.png";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -40,7 +41,7 @@ export default function SiteHeader() {
           >
             <span className="relative inline-flex items-center justify-center h-10 w-10 rounded-full overflow-hidden bg-[var(--color-bg-elev-2)]">
               <Image
-                src="/brand/icon-128.png"
+                src={iconUrl}
                 alt=""
                 width={40}
                 height={40}

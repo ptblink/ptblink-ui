@@ -1,4 +1,5 @@
 import Image from "next/image";
+import logoUrl from "../brand/blinklogo-dark.svg";
 
 export default function SiteFooter() {
   return (
@@ -6,7 +7,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
         <div>
           <Image
-            src="/brand/blinklogo-dark.svg"
+            src={logoUrl}
             alt="PT Blink"
             width={130}
             height={50}
