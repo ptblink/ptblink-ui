@@ -60,7 +60,7 @@
     "tsup": "^8",
     "typescript": "^5"
   },
-  "repository": "github:MaxouJS/ptblink-ui",
+  "repository": "github:ptblink/ptblink-ui",
   "publishConfig": {
     "access": "public"
   }
