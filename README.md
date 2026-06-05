@@ -103,5 +103,5 @@ Section component props (`Accent`, `Video`, `Slide`, `Cta`) are NOT exported as 
 ## Caveats
 
 - **`"use client"` on the entire barrel.** The bundled `dist/index.js` is marked `"use client"` so all exports work in App Router server contexts. Pure-server components (e.g., `Eyebrow`, `Card`) still render correctly but run in the client bundle when imported via `@ptblink/ui`. If you need them as RSC, copy the source directly.
-- **Branded assets.** `SiteHeader` and `SiteFooter` reference PT Blink logo paths under `/brand/`. Provide matching assets in your app's `public/brand/` directory.
+- **Branded assets are bundled.** From `0.1.3` onward, `icon-128.png` and `blinklogo-dark.svg` ship inside the package and are consumed directly by `SiteHeader` / `SiteFooter` — no `public/brand/` files needed in the consuming app. Reuse them anywhere with `import url from "@ptblink/ui/brand/icon-128.png"` / `... /blinklogo-dark.svg"`.
 - **Tailwind v4 only.** Tokens live in a `@theme` block inside `@ptblink/ui/styles.css`. There is no v3 compatibility build.
