@@ -29,9 +29,13 @@ export default function VideoModal({
     document.body.style.overflow = "hidden";
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      // Delete/Backspace are the air-mouse remote's "back"; Escape for keyboards.
+      if (e.key === "Escape" || e.key === "Delete" || e.key === "Backspace") {
+        e.preventDefault();
+        onClose();
+      }
     };
-    window.addEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey, true);
 
     void fetch("/api/track", {
       method: "POST",
@@ -44,7 +48,7 @@ export default function VideoModal({
 
     return () => {
       document.body.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onKey, true);
     };
   }, [item, onClose]);
 

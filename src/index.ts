@@ -6,6 +6,8 @@ export { default as Reveal } from "./components/Reveal";
 export { default as VideoThumb } from "./components/VideoThumb";
 export { default as VideoModal } from "./components/VideoModal";
 export type { VideoModalItem } from "./components/VideoModal";
+export { default as ActionList } from "./components/ActionList";
+export type { ActionListItem } from "./components/ActionList";
 export { default as Eyebrow } from "./components/Eyebrow";
 export { default as SectionHeader } from "./components/SectionHeader";
 
