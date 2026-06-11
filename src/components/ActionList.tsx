@@ -14,8 +14,10 @@ export type ActionListItem = { label: string };
  *          window listener, so the deck's global sub-slide navigation only
  *          fires when ↑ is pressed on the FIRST button (leaving the slide).
  *          ↓ on the last button falls through to the deck (clamps, no-op).
- *   Enter  activates the selected button.
- *   hover  (air-mouse pointer) syncs the selection.
+ *   Enter  activates the selected button (the selection also holds real DOM
+ *          focus, so native button activation works even without our handler).
+ *   click  (air-mouse pointer) activates a button directly. Hover does NOT
+ *          move the selection — gyro pointers jitter and would fight the d-pad.
  *
  * While a modal is open ([aria-modal="true"]), all keys are left to it.
  */
@@ -82,7 +84,6 @@ export default function ActionList({
                 refs.current[i] = el;
               }}
               onClick={() => onActivate?.(item, i)}
-              onMouseEnter={() => setSelected(i)}
               aria-current={isSelected}
               className={`w-full flex items-center gap-4 min-h-[72px] rounded-xl border px-6 py-4 text-lg font-light text-left transition-colors active:scale-[0.99] outline-none ${
                 isSelected
