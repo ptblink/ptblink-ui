@@ -76,7 +76,14 @@ function reducer(state: Pos, action: Action): Pos {
  * Home/End jump to ends · Enter activates the current sub-slide's `onEnter`
  * Escape closes any open dialog, else navigates to the previous page.
  */
-export default function SlideDeck({ sections }: { sections: DeckSection[] }) {
+export default function SlideDeck({
+  sections,
+  subDots = true,
+}: {
+  sections: DeckSection[];
+  /** Hide the sub-slide counter pill ("01 / 02" + dots) — e.g. on remote-driven kiosk screens. */
+  subDots?: boolean;
+}) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -231,7 +238,7 @@ export default function SlideDeck({ sections }: { sections: DeckSection[] }) {
 
       <SectionPills sections={sections} sec={sec} onPick={goSection} />
 
-      {subCount > 1 && (
+      {subDots && subCount > 1 && (
         <SubDots
           count={subCount}
           current={sub}
