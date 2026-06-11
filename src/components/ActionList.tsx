@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Reveal from "./Reveal";
 
 export type ActionListItem = { label: string };
@@ -30,6 +30,13 @@ export default function ActionList({
   onActivate?: (item: ActionListItem, index: number) => void;
 }) {
   const [selected, setSelected] = useState(0);
+  const refs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // The selection IS the focus: native button semantics make Enter activate
+  // the selected item even without our key handler (remote firmware varies).
+  useEffect(() => {
+    refs.current[selected]?.focus({ preventScroll: true });
+  }, [selected]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -71,10 +78,13 @@ export default function ActionList({
           <Reveal as="li" key={i} delay={0.28 + i * 0.07}>
             <button
               type="button"
+              ref={(el) => {
+                refs.current[i] = el;
+              }}
               onClick={() => onActivate?.(item, i)}
               onMouseEnter={() => setSelected(i)}
               aria-current={isSelected}
-              className={`w-full flex items-center gap-4 min-h-[72px] rounded-xl border px-6 py-4 text-lg font-light text-left transition-colors active:scale-[0.99] ${
+              className={`w-full flex items-center gap-4 min-h-[72px] rounded-xl border px-6 py-4 text-lg font-light text-left transition-colors active:scale-[0.99] outline-none ${
                 isSelected
                   ? "bg-[var(--color-bg-elev-2)]"
                   : "bg-[var(--color-bg-elev)]/70 backdrop-blur-md"

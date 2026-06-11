@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type HTMLMotionProps } from "motion/react";
-import type { ElementType } from "react";
+import { useMemo, type ElementType } from "react";
 
 type RevealProps = {
   delay?: number;
@@ -29,7 +29,10 @@ export default function Reveal({
   className,
   ...rest
 }: RevealProps) {
-  const MotionTag = motion(as);
+  // Memoised: motion(as) returns a NEW component type each call, so creating
+  // it inline remounts the subtree on every parent re-render — replaying the
+  // entrance animation (e.g. on each ActionList selection change).
+  const MotionTag = useMemo(() => motion(as), [as]);
   return (
     <MotionTag
       initial={{ opacity: 0, y: rise, filter: `blur(${blur}px)` }}
