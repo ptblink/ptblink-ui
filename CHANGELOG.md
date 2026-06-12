@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 — 2026-06-12
+
+- Light theme. The neutral token ramp now has a light counterpart in
+  `styles/tokens.css`, activated by `data-theme="light"` on `<html>`;
+  dark remains the default when the attribute is absent. Brand blues are
+  shared by both themes. New barrel exports to drive it:
+  ```tsx
+  import { applyTheme, getAppliedTheme, type ThemeName } from "@ptblink/ui";
+  applyTheme("light"); // sets data-theme on <html>; applyTheme("dark") removes it
+  ```
+
 ## 0.1.3 — 2026-06-05
 
 - Ship the two PT Blink brand assets (`icon-128.png`, `blinklogo-dark.svg`)

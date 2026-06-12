@@ -43,3 +43,7 @@ export { useScrolled } from "./hooks/useScrolled";
 
 // Utils
 export { displayClassForLength } from "./utils/displayClass";
+
+// Theme
+export { applyTheme, getAppliedTheme, THEME_ATTRIBUTE } from "./theme";
+export type { ThemeName } from "./theme";

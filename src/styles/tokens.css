@@ -17,3 +17,20 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+
+/*
+ * Light theme — opt-in via `data-theme="light"` on <html> (see applyTheme()
+ * in the package barrel). Same neutral ramp as the dark canvas, inverted;
+ * brand blues are shared by both themes. Dark stays the default: without
+ * the attribute nothing changes.
+ */
+[data-theme="light"] {
+  --color-bg: #f5f6f8;
+  --color-bg-elev: #ffffff;
+  --color-bg-elev-2: #eaedf1;
+  --color-ink: #15181c;
+  --color-ink-dim: #555b64;
+  --color-ink-mute: #8b919a;
+  --color-line: rgba(5, 6, 8, 0.08);
+  --color-line-strong: rgba(5, 6, 8, 0.18);
+}
