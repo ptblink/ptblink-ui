@@ -25,3 +25,22 @@ export function getAppliedTheme(): ThemeName {
   if (typeof document === "undefined") return "dark";
   return document.documentElement.getAttribute(THEME_ATTRIBUTE) === "light" ? "light" : "dark";
 }
+
+/**
+ * Near-white base stops used for Grainient backgrounds in light mode —
+ * only the middle (accent) stop should pop on a light canvas.
+ */
+const LIGHT_GRAINIENT_BASE: [string, string] = ["#f7f9fb", "#e8eef5"];
+
+/**
+ * Map a `[base, accent, base]` Grainient tuple to the active theme.
+ * Callers declare the dark palette; in light mode the two base stops are
+ * swapped for near-white while the accent (position 1) stays untouched.
+ */
+export function grainientColorsForTheme(
+  colors: [string, string, string],
+  theme: ThemeName,
+): [string, string, string] {
+  if (theme !== "light") return colors;
+  return [LIGHT_GRAINIENT_BASE[0], colors[1], LIGHT_GRAINIENT_BASE[1]];
+}

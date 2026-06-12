@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 — 2026-06-12
+
+- Light-mode Grainients. `PageHero` and `Slide` now treat their `colors`
+  tuple as the dark palette: under `data-theme="light"` the two base stops
+  render near-white and only the accent (middle stop) pops. New exports:
+  `useThemeName()` (tracks `data-theme`) and `grainientColorsForTheme()`.
+
 ## 0.2.0 — 2026-06-12
 
 - Light theme. The neutral token ramp now has a light counterpart in

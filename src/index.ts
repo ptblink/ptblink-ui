@@ -45,5 +45,6 @@ export { useScrolled } from "./hooks/useScrolled";
 export { displayClassForLength } from "./utils/displayClass";
 
 // Theme
-export { applyTheme, getAppliedTheme, THEME_ATTRIBUTE } from "./theme";
+export { applyTheme, getAppliedTheme, grainientColorsForTheme, THEME_ATTRIBUTE } from "./theme";
 export type { ThemeName } from "./theme";
+export { useThemeName } from "./hooks/useThemeName";

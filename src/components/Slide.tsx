@@ -1,4 +1,6 @@
 import Grainient from "../react-bits/Grainient";
+import { useThemeName } from "../hooks/useThemeName";
+import { grainientColorsForTheme } from "../theme";
 
 /**
  * One full-viewport slide inside a SlideDeck.
@@ -18,15 +20,17 @@ export default function Slide({
   align?: "center" | "start";
   className?: string;
 }) {
+  const theme = useThemeName();
+  const themed = colors ? grainientColorsForTheme(colors, theme) : undefined;
   const justify = align === "center" ? "justify-center" : "justify-start";
   return (
     <div className="absolute inset-0 w-screen h-screen overflow-hidden flex">
-      {colors && (
+      {themed && (
         <div className="absolute inset-0 -z-10">
           <Grainient
-            color1={colors[0]}
-            color2={colors[1]}
-            color3={colors[2]}
+            color1={themed[0]}
+            color2={themed[1]}
+            color3={themed[2]}
             timeSpeed={0.13}
             warpStrength={1.0}
             warpAmplitude={60}
