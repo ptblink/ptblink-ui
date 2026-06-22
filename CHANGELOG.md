@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0 — 2026-06-22
+
+- Form + action primitives. New barrel exports `Button`, `Input`, `Field` —
+  token-driven and deliberately restrained (kiosk actions, not billboards):
+  ```tsx
+  import { Button, Field } from "@ptblink/ui";
+
+  <Field label="Email" name="email" type="email" required />
+  <Button type="submit" arrow>Check In</Button>
+  <Button href="/" variant="secondary">Back</Button>
+  ```
+  `Button` is polymorphic (`href` → Next `Link`, otherwise a native
+  `<button>` usable as a form submit), with `variant` (`primary` /
+  `secondary` / `ghost`), `size` (`sm` / `md` / `lg`), and an optional
+  trailing `arrow`. `Field` is a labelled `Input` with an optional error line.
+
 ## 0.2.1 — 2026-06-12
 
 - Light-mode Grainients. `PageHero` and `Slide` now treat their `colors`
