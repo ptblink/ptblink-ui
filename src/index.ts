@@ -20,6 +20,7 @@ export { default as Button } from "./components/Button";
 export type { ButtonVariant, ButtonSize } from "./components/Button";
 export { default as Input } from "./components/Input";
 export { default as Field } from "./components/Field";
+export { default as FormShell } from "./components/FormShell";
 export { default as StatGrid } from "./components/StatGrid";
 export { default as BackLink } from "./components/BackLink";
 export { default as SiteHeader } from "./components/SiteHeader";

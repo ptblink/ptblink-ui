@@ -29,8 +29,10 @@ const SIZES: Record<ButtonSize, string> = {
 };
 
 const VARIANTS: Record<ButtonVariant, string> = {
+  // Filled blue — the key action. A soft brand glow makes it the obvious
+  // primary so it never competes with a neighbouring secondary button.
   primary:
-    "bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-soft)] active:bg-[var(--color-brand-dim)]",
+    "bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-soft)] active:bg-[var(--color-brand-dim)] shadow-[0_12px_30px_-12px_rgba(44,144,207,0.7)]",
   secondary:
     "border border-[var(--color-line-strong)] text-[var(--color-ink)] hover:bg-[var(--color-bg-elev)]",
   ghost: "text-[var(--color-ink-dim)] hover:text-[var(--color-ink)]",

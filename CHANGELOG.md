@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 — 2026-06-22
+
+- `FormShell` — a centred form column (eyebrow + thin display title + dim
+  description over the form), so forms read consistently instead of being
+  stranded top-left. `width="md"` (default) or `"lg"` for multi-column forms.
+- `Input` reworked: rounded-xl, taller (min-h 52px), hover border + a soft
+  brand focus ring. Looks like a real input, not a default box.
+- `Button` `primary` now carries a soft brand glow so the key blue action
+  clearly outranks a neighbouring `secondary` (outline) button.
+
 ## 0.3.0 — 2026-06-22
 
 - Form + action primitives. New barrel exports `Button`, `Input`, `Field` —
