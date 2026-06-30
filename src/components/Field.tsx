@@ -7,9 +7,13 @@ import Input from "./Input";
 export default function Field({
   label,
   error,
+  size = "md",
   className = "",
   ...props
-}: { label: string; error?: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+}: { label: string; error?: string; size?: "sm" | "md" } & Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size"
+>) {
   const id = props.id ?? props.name;
   return (
     <div className={className}>
@@ -19,7 +23,7 @@ export default function Field({
       >
         {label}
       </label>
-      <Input id={id} {...props} />
+      <Input id={id} size={size} {...props} />
       {error && <p className="mt-2 text-body-sm text-red-300">{error}</p>}
     </div>
   );
