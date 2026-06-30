@@ -11,6 +11,12 @@ export type { ActionListItem } from "./components/ActionList";
 export { default as Eyebrow } from "./components/Eyebrow";
 export { default as SectionHeader } from "./components/SectionHeader";
 
+// Components — kiosk forms (full-screen, no-scroll, iPad portrait + landscape)
+export { default as KioskShell } from "./components/KioskShell";
+export { default as KioskField } from "./components/KioskField";
+export { default as ChoiceGroup } from "./components/ChoiceGroup";
+export type { ChoiceOption } from "./components/ChoiceGroup";
+
 // Components — landing (from pre-infra-pass@d639043)
 export { default as PageShell } from "./components/PageShell";
 export { default as PageHero } from "./components/PageHero";

@@ -37,6 +37,9 @@
 /* Viewport-scaled spacing */
 .pad-slide-y { padding-top: clamp(2rem, 7vh, 5rem); padding-bottom: clamp(2rem, 7vh, 5rem); }
 .pad-slide-x { padding-left: clamp(7rem, 10vw, 9rem); padding-right: clamp(7rem, 10vw, 9rem); }
+/* Kiosk forms — tighter than a slide so a multi-field form fits a short landscape iPad. */
+.pad-kiosk-y { padding-top: clamp(1.25rem, 4vh, 3rem); padding-bottom: clamp(1.25rem, 4vh, 3rem); }
+.pad-kiosk-x { padding-left: clamp(1.25rem, 5vw, 4rem); padding-right: clamp(1.25rem, 5vw, 4rem); }
 .gap-stack-sm { gap: clamp(0.5rem, 1.5vh, 1rem); }
 .gap-stack    { gap: clamp(1rem, 2.5vh, 1.75rem); }
 .gap-stack-lg { gap: clamp(1.5rem, 4vh, 3rem); }
