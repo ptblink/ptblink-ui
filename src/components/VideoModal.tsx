@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { isVimeo, toVimeoEmbed } from "../utils/video";
 
 /** Placeholder MP4 self-hosted in /public — Big Buck Bunny short clip. */
 const PLACEHOLDER_SRC = "/placeholder-loop.mp4";
@@ -22,6 +23,17 @@ export default function VideoModal({
   onClose: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const [bufferPct, setBufferPct] = useState(0);
+
+  const updateBuffer = useCallback(() => {
+    const v = videoRef.current;
+    if (v && v.duration) {
+      const b = v.buffered;
+      if (b.length > 0) setBufferPct((b.end(b.length - 1) / v.duration) * 100);
+    }
+    rafRef.current = requestAnimationFrame(updateBuffer);
+  }, []);
 
   useEffect(() => {
     if (!item) return;
@@ -52,10 +64,23 @@ export default function VideoModal({
     };
   }, [item, onClose]);
 
+  // Buffer bar for direct MP4s only — Vimeo's iframe manages its own buffering.
+  useEffect(() => {
+    if (!item) return;
+    const s = item.src ?? PLACEHOLDER_SRC;
+    if (isVimeo(s)) return;
+    setBufferPct(0);
+    rafRef.current = requestAnimationFrame(updateBuffer);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [item, updateBuffer]);
+
   if (!item) return null;
 
   const src = item.src ?? PLACEHOLDER_SRC;
   const accent = item.accent ?? "#2c90cf";
+  const vimeoSrc = isVimeo(src) ? toVimeoEmbed(src, { autoplay: true }) : null;
 
   return (
     <div
@@ -105,14 +130,33 @@ export default function VideoModal({
         </header>
 
         <div className="relative bg-black aspect-video min-h-0">
-          <video
-            ref={videoRef}
-            src={src}
-            autoPlay
-            controls
-            playsInline
-            className="absolute inset-0 h-full w-full object-contain"
-          />
+          {!vimeoSrc && (
+            <div className="absolute top-0 inset-x-0 h-1 bg-white/15 z-10">
+              <div
+                className="h-full bg-white/75 transition-[width] duration-500 ease-out"
+                style={{ width: `${bufferPct}%` }}
+              />
+            </div>
+          )}
+          {vimeoSrc ? (
+            <iframe
+              key={vimeoSrc}
+              src={vimeoSrc}
+              title={item.title}
+              className="absolute inset-0 h-full w-full"
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <video
+              ref={videoRef}
+              src={src}
+              autoPlay
+              controls
+              playsInline
+              className="absolute inset-0 h-full w-full object-contain"
+            />
+          )}
           {!item.src && (
             <div className="absolute top-3 right-3 rounded-full bg-amber-500/15 border border-amber-500/40 px-3 py-1 text-eyebrow font-mono uppercase text-amber-300 pointer-events-none">
               Placeholder

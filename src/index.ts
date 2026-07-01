@@ -37,6 +37,7 @@ export { default as FormShell } from "./components/FormShell";
 export { default as StatGrid } from "./components/StatGrid";
 export { default as BackLink } from "./components/BackLink";
 export { default as SiteHeader } from "./components/SiteHeader";
+export type { NavItem } from "./components/SiteHeader";
 export { default as SiteFooter } from "./components/SiteFooter";
 export { default as Hero } from "./components/Hero";
 export { default as SectionVideo } from "./components/SectionVideo";
@@ -64,6 +65,8 @@ export { useAutoRefresh } from "./hooks/useAutoRefresh";
 
 // Utils
 export { displayClassForLength } from "./utils/displayClass";
+export { isVimeo, toVimeoEmbed } from "./utils/video";
+export type { VimeoEmbedOptions } from "./utils/video";
 
 // Theme
 export { applyTheme, getAppliedTheme, grainientColorsForTheme, THEME_ATTRIBUTE } from "./theme";
