@@ -66,7 +66,11 @@ export default function Slide({
               zoom={1.05}
             />
           )}
-          {theme === "light" ? (
+          {/* Theme-aware light veil applies ONLY to deck-scoped theming (an
+              explicit themeOverride). Without it, the default path renders the
+              original dark veil regardless of the ambient app theme, so plain
+              `<Slide colors={...} />` is byte-identical to before. */}
+          {themeOverride !== undefined && theme === "light" ? (
             <div
               className="absolute inset-0"
               style={{
