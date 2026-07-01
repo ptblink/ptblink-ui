@@ -38,25 +38,37 @@ import { Slide, Reveal, Eyebrow } from "@ptblink/ui";
 
 | Export | Description |
 |---|---|
-| `Slide` | Full-viewport slide wrapper with optional `Grainient` background. |
+| `Slide` | Full-viewport slide wrapper with optional `Grainient` background. Optional `adaptive` (GPU-safe gradient), `themeOverride`, `subtle`, `underlay`. |
 | `SlideDeck` | 2D remote-driven slide deck. Owns arrow/Esc/Enter keyboard, HomePill, EnterHint. |
 | `Reveal` | Blur + rise + fade entrance wrapper (motion-based). |
 | `VideoThumb` | 16:9 looping placeholder with play overlay. Auto-pauses off-screen. |
-| `VideoModal` | Full-screen video dialog. Esc / click-out close. |
+| `VideoModal` | Full-screen video dialog. Esc / click-out close. Plays Vimeo share URLs (iframe) and direct MP4s (with a buffer bar). |
 | `Eyebrow` | Mono uppercase label. `tone` and `color` props for variants. |
 | `SectionHeader` | `Eyebrow` + headline + optional side slot. |
+| `Confirmation` | Terminal "done" screen — title + detail + a single Done button. |
+
+### Components — forms & kiosk chrome
+
+| Export | Description |
+|---|---|
+| `SignaturePad` | Canvas signature island; serialises each stroke to a PNG data-URL in a hidden input for server-action forms. |
+| `ConfirmModal` | Portal-to-body confirm dialog (not `window.confirm`). Click-out + Escape cancel. |
+| `ErrorBox` | Inline red error banner for forms. |
+| `StepDots` | Multi-step form progress indicator (`steps`/`total`/`name`). |
+| `FormActions` | Stacked full-width Continue + Back actions for kiosk forms. |
+| `ThemeToggle` | Dark/light pill that flips `data-theme` via `applyTheme`; optional `onToggle` to broadcast. |
 
 ### Components — landing
 
 | Export | Description |
 |---|---|
 | `PageShell` | Top-padded container that clears the floating navbar. |
-| `PageHero` | Hero section frame with optional `Grainient` background. |
+| `PageHero` | Hero section frame with optional `Grainient` background. Optional `adaptive` swaps in the GPU-safe `AnimatedGradient`. |
 | `Section` | Body section spacing wrapper. |
 | `Card` | Bordered elevated card. |
 | `StatGrid` | Stat grid. |
 | `BackLink` | "← Back" mono link. |
-| `SiteHeader` | Floating navbar with logo, nav links, scroll-aware styling. Expects `/brand/icon-128.png` in the consuming app's `public/`. |
+| `SiteHeader` | Floating navbar with logo, nav links, scroll-aware styling. Optional `nav`, `cta` (pass `null` to hide), `subtitle`, `homeHref`, `inFlow` — all default to the standard PT Blink chrome. |
 | `SiteFooter` | Footer with brand logo. Expects `/brand/blinklogo-dark.svg` in `public/`. |
 | `Hero` | Landing hero composition (Eyebrow + headline + stats). |
 | `SectionVideo` | Video gallery section block with `VideoModal` integration. |
@@ -78,18 +90,23 @@ import { Slide, Reveal, Eyebrow } from "@ptblink/ui";
 | `ShinyText` | Shiny shimmer text. |
 | `SplitText` | GSAP per-character split animation (requires `gsap`, `@gsap/react`). |
 | `TiltedCard` | 3D tilt-on-hover card. |
+| `AnimatedGradient` | GPU-adaptive `Grainient`: WebGL grain on capable hardware, animated CSS-blob wash on low-tier GPUs. |
 
 ### Hooks
 
 | Export | Description |
 |---|---|
 | `useScrolled(threshold = 12)` | Boolean — true when window scrollY exceeds threshold. |
+| `useGPUCapability()` | `"high" \| "low" \| null` — cached WebGL renderer probe (null while detecting). |
+| `useAutoRefresh(intervalMs)` | Calls `router.refresh()` on an interval; clears on unmount. |
 
 ### Utilities
 
 | Export | Description |
 |---|---|
 | `displayClassForLength(text, sizes?)` | Returns a length-aware `text-display-*` class for the given string. |
+| `isVimeo(url)` | True when `url` points at Vimeo (share or player URL). |
+| `toVimeoEmbed(url, opts?)` | Converts a Vimeo share URL to a `player.vimeo.com` embed URL (or `null`). |
 
 ### Types
 
