@@ -49,3 +49,22 @@
 .mb-stack-sm  { margin-bottom: clamp(0.75rem, 2vh, 1.25rem); }
 .mb-stack     { margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem); }
 .mb-stack-lg  { margin-bottom: clamp(2rem, 6vh, 4rem); }
+
+/* Animated CSS-blob fallback for AnimatedGradient (low-tier GPUs). */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0%,   0%)   scale(1);    }
+  33%       { transform: translate(12%,  -8%)  scale(1.04); }
+  66%       { transform: translate(-8%,  10%)  scale(0.97); }
+}
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0%,   0%)   scale(1);    }
+  33%       { transform: translate(-14%, 7%)   scale(0.96); }
+  66%       { transform: translate(7%,   -11%) scale(1.05); }
+}
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0%,  0%)  scale(1);    }
+  50%       { transform: translate(9%,  7%)  scale(1.07); }
+}
+.blob-1 { animation: blob-drift-1 20s ease-in-out infinite; }
+.blob-2 { animation: blob-drift-2 26s ease-in-out infinite; }
+.blob-3 { animation: blob-drift-3 17s ease-in-out infinite; }

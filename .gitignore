@@ -4,3 +4,6 @@ dist/
 .DS_Store
 .vercel
 .env*
+
+# Superpowers SDD scratch (progress ledger)
+.superpowers/

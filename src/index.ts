@@ -16,6 +16,13 @@ export { default as KioskShell } from "./components/KioskShell";
 export { default as KioskField } from "./components/KioskField";
 export { default as ChoiceGroup } from "./components/ChoiceGroup";
 export type { ChoiceOption } from "./components/ChoiceGroup";
+export { default as SignaturePad } from "./components/SignaturePad";
+export { default as ConfirmModal } from "./components/ConfirmModal";
+export { default as ErrorBox } from "./components/ErrorBox";
+export { default as Confirmation } from "./components/Confirmation";
+export { default as StepDots } from "./components/StepDots";
+export { default as FormActions } from "./components/FormActions";
+export { default as ThemeToggle } from "./components/ThemeToggle";
 
 // Components — landing (from pre-infra-pass@d639043)
 export { default as PageShell } from "./components/PageShell";
@@ -30,6 +37,7 @@ export { default as FormShell } from "./components/FormShell";
 export { default as StatGrid } from "./components/StatGrid";
 export { default as BackLink } from "./components/BackLink";
 export { default as SiteHeader } from "./components/SiteHeader";
+export type { NavItem } from "./components/SiteHeader";
 export { default as SiteFooter } from "./components/SiteFooter";
 export { default as Hero } from "./components/Hero";
 export { default as SectionVideo } from "./components/SectionVideo";
@@ -48,12 +56,17 @@ export { default as ScrollReveal } from "./react-bits/ScrollReveal";
 export { default as ShinyText } from "./react-bits/ShinyText";
 export { default as SplitText } from "./react-bits/SplitText";
 export { default as TiltedCard } from "./react-bits/TiltedCard";
+export { default as AnimatedGradient } from "./react-bits/AnimatedGradient";
 
 // Hooks
 export { useScrolled } from "./hooks/useScrolled";
+export { useGPUCapability } from "./hooks/useGPUCapability";
+export { useAutoRefresh } from "./hooks/useAutoRefresh";
 
 // Utils
 export { displayClassForLength } from "./utils/displayClass";
+export { isVimeo, toVimeoEmbed } from "./utils/video";
+export type { VimeoEmbedOptions } from "./utils/video";
 
 // Theme
 export { applyTheme, getAppliedTheme, grainientColorsForTheme, THEME_ATTRIBUTE } from "./theme";

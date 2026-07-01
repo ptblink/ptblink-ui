@@ -6,3 +6,5 @@
  * Import: `import { displayClassForLength } from "@ptblink/ui/utils";`
  */
 export { displayClassForLength } from "./utils/displayClass";
+export { isVimeo, toVimeoEmbed } from "./utils/video";
+export type { VimeoEmbedOptions } from "./utils/video";
