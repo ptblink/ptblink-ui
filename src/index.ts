@@ -23,6 +23,12 @@ export { default as Confirmation } from "./components/Confirmation";
 export { default as StepDots } from "./components/StepDots";
 export { default as FormActions } from "./components/FormActions";
 export { default as ThemeToggle } from "./components/ThemeToggle";
+export { default as Notice } from "./components/Notice";
+
+// Components — staff/admin data tables
+export { default as DataTable, DataRow, DataCell, SectionLabel } from "./components/DataTable";
+export type { DataColumn } from "./components/DataTable";
+export { default as StatusPill } from "./components/StatusPill";
 
 // Components — landing (from pre-infra-pass@d639043)
 export { default as PageShell } from "./components/PageShell";
