@@ -29,7 +29,7 @@ export { default as Notice } from "./components/Notice";
 export { default as DataTable, DataRow, DataCell, SectionLabel } from "./components/DataTable";
 export type { DataColumn } from "./components/DataTable";
 export { default as StatusPill } from "./components/StatusPill";
-export { default as Pagination, paginate } from "./components/Pagination";
+export { default as Pagination } from "./components/Pagination";
 
 // Components — overlays
 export { default as Modal } from "./components/Modal";

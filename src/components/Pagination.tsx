@@ -6,15 +6,10 @@ import Link from "next/link";
  * shape via `hrefForPage(page)`, so it can preserve its own params (filters,
  * selection). 1-indexed. Renders nothing when there's a single page.
  *
- * Pair with `paginate(items, page, perPage)` to slice the current page.
+ * Pair with `paginate(items, page, perPage)` from `@ptblink/ui/utils` to slice
+ * the current page. (paginate lives on the utils entry, NOT the main barrel, so
+ * it stays callable from server components — the barrel is `"use client"`.)
  */
-export function paginate<T>(items: T[], page: number, perPage: number): { rows: T[]; page: number; pageCount: number; total: number } {
-  const total = items.length;
-  const pageCount = Math.max(1, Math.ceil(total / perPage));
-  const clamped = Math.min(Math.max(1, Math.floor(page) || 1), pageCount);
-  const start = (clamped - 1) * perPage;
-  return { rows: items.slice(start, start + perPage), page: clamped, pageCount, total };
-}
 
 /** The compact page window around the current page (with 1 and last always shown). */
 function pageWindow(page: number, pageCount: number): (number | "…")[] {

@@ -1,6 +1,6 @@
 {
   "name": "@ptblink/ui",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "PT Blink shared UI primitives, design tokens, and animation helpers.",
   "license": "UNLICENSED",
   "type": "module",

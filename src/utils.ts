@@ -8,3 +8,4 @@
 export { displayClassForLength } from "./utils/displayClass";
 export { isVimeo, toVimeoEmbed } from "./utils/video";
 export type { VimeoEmbedOptions } from "./utils/video";
+export { paginate } from "./utils/pagination";
