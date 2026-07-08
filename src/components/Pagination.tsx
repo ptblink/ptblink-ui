@@ -30,26 +30,46 @@ function pageWindow(page: number, pageCount: number): (number | "…")[] {
 const cell =
   "inline-flex h-9 min-w-9 items-center justify-center rounded-full border px-3 text-[11px] font-mono uppercase tracking-widest transition";
 
+/**
+ * Build a page href from a base path + query params + the page param name.
+ * String props only (no function) so `Pagination` is passable from a server
+ * component through the client barrel. e.g.
+ * `hrefFor("/staff/hubspot", { q: "foo" }, "page", 3)` → `/staff/hubspot?q=foo&page=3`.
+ */
+function hrefFor(basePath: string, params: Record<string, string> | undefined, pageParam: string, page: number): string {
+  const sp = new URLSearchParams(params ?? {});
+  sp.set(pageParam, String(page));
+  return `${basePath}?${sp.toString()}`;
+}
+
 export default function Pagination({
   page,
   pageCount,
-  hrefForPage,
+  basePath,
+  params,
+  pageParam = "page",
   className = "",
 }: {
   page: number;
   pageCount: number;
-  hrefForPage: (page: number) => string;
+  /** Path without query, e.g. "/staff/visitors". */
+  basePath: string;
+  /** Extra query params to PRESERVE across page changes (filters, search…). */
+  params?: Record<string, string>;
+  /** Name of the page query param (default "page"). */
+  pageParam?: string;
   className?: string;
 }) {
   if (pageCount <= 1) return null;
 
+  const href = (p: number) => hrefFor(basePath, params, pageParam, p);
   const active = "border-[var(--color-line-strong)] bg-[var(--color-bg-elev-2)] text-[var(--color-ink)]";
   const idle = "border-[var(--color-line-strong)] text-[var(--color-ink-dim)] hover:bg-[var(--color-bg-elev-2)] hover:text-[var(--color-ink)]";
   const disabled = "border-[var(--color-line)] text-[var(--color-ink-mute)] opacity-40 pointer-events-none";
 
   return (
     <nav className={`mt-5 flex items-center justify-center gap-1.5 ${className}`} aria-label="Pagination">
-      <Link href={hrefForPage(page - 1)} className={`${cell} ${page <= 1 ? disabled : idle}`} aria-label="Previous page">
+      <Link href={href(page - 1)} className={`${cell} ${page <= 1 ? disabled : idle}`} aria-label="Previous page">
         ‹
       </Link>
       {pageWindow(page, pageCount).map((n, i) =>
@@ -58,12 +78,12 @@ export default function Pagination({
             …
           </span>
         ) : (
-          <Link key={n} href={hrefForPage(n)} className={`${cell} ${n === page ? active : idle}`} aria-current={n === page ? "page" : undefined}>
+          <Link key={n} href={href(n)} className={`${cell} ${n === page ? active : idle}`} aria-current={n === page ? "page" : undefined}>
             {n}
           </Link>
         ),
       )}
-      <Link href={hrefForPage(page + 1)} className={`${cell} ${page >= pageCount ? disabled : idle}`} aria-label="Next page">
+      <Link href={href(page + 1)} className={`${cell} ${page >= pageCount ? disabled : idle}`} aria-label="Next page">
         ›
       </Link>
     </nav>
