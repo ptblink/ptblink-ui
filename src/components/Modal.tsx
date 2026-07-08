@@ -31,6 +31,7 @@ export default function Modal({
   title,
   children,
   className = "",
+  dismissible = true,
 }: {
   open: boolean;
   onClose: () => void;
@@ -39,6 +40,12 @@ export default function Modal({
   title?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
+  /**
+   * When false, the modal cannot be dismissed by Escape, backdrop click, or the
+   * X button (which is hidden) — for mandatory dialogs the consumer closes
+   * programmatically once its own condition is met. Defaults to true.
+   */
+  dismissible?: boolean;
 }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -48,21 +55,21 @@ export default function Modal({
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (dismissible && e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open, onClose]);
+  }, [open, onClose, dismissible]);
 
   if (!open || !mounted) return null;
 
   return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 md:p-6 animate-in fade-in duration-200"
-      onClick={onClose}
+      onClick={dismissible ? onClose : undefined}
       role="dialog"
       aria-modal="true"
     >
@@ -70,21 +77,25 @@ export default function Modal({
         className={`relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-line-strong)] bg-[var(--color-bg-elev)] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)] ${SIZES[size]} ${className}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[var(--color-line)] px-5 py-3.5">
-          <div className="min-w-0 font-display font-thin-tight text-lg text-[var(--color-ink)] truncate">
-            {title}
+        {(title || dismissible) && (
+          <div className="flex shrink-0 items-center justify-between gap-4 border-b border-[var(--color-line)] px-5 py-3.5">
+            <div className="min-w-0 font-display font-thin-tight text-lg text-[var(--color-ink)] truncate">
+              {title}
+            </div>
+            {dismissible && (
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close"
+                className="flex shrink-0 h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line-strong)] text-[var(--color-ink-dim)] transition hover:bg-white/5 hover:border-[var(--color-brand)] hover:text-[var(--color-ink)]"
+              >
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden>
+                  <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            )}
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="flex shrink-0 h-9 w-9 items-center justify-center rounded-full border border-[var(--color-line-strong)] text-[var(--color-ink-dim)] transition hover:bg-white/5 hover:border-[var(--color-brand)] hover:text-[var(--color-ink)]"
-          >
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden>
-              <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-          </button>
-        </div>
+        )}
         <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
       </div>
     </div>,
