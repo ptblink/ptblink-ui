@@ -35,6 +35,16 @@ export { default as Pagination } from "./components/Pagination";
 export { default as Modal } from "./components/Modal";
 export type { ModalSize } from "./components/Modal";
 
+// Components — chrome & kiosk primitives (extracted from consuming apps)
+export { default as BrandLockup } from "./components/BrandLockup";
+export { default as FlowHeading } from "./components/FlowHeading";
+export { default as FolderTab } from "./components/FolderTab";
+export { default as AutoRedirect } from "./components/AutoRedirect";
+export { default as PrintButton } from "./components/PrintButton";
+export { default as CardShell } from "./components/CardShell";
+export type { CardAccent } from "./components/CardShell";
+export { default as UtilityCard } from "./components/UtilityCard";
+
 // Components — landing (from pre-infra-pass@d639043)
 export { default as PageShell } from "./components/PageShell";
 export { default as PageHero } from "./components/PageHero";
