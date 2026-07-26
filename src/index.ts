@@ -66,6 +66,14 @@ export { default as SectionSlideshow } from "./components/SectionSlideshow";
 export { default as SectionPlatformCta } from "./components/SectionPlatformCta";
 export { default as SectionContact } from "./components/SectionContact";
 
+// Components — control-room / instrument surfaces (dashboards, telemetry, reports)
+export { default as InstrumentPanel, PanelBrackets } from "./components/InstrumentPanel";
+export { default as ConsoleHeader } from "./components/ConsoleHeader";
+export { default as Readout, Meter } from "./components/Readout";
+export { default as LegendChips } from "./components/LegendChips";
+export { default as DeckArrow } from "./components/DeckArrow";
+export type { DeckArrowDirection, DeckArrowSize } from "./components/DeckArrow";
+
 // react-bits primitives
 export { default as Aurora } from "./react-bits/Aurora";
 export { default as BlurText } from "./react-bits/BlurText";
